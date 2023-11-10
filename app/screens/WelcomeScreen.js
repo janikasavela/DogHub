@@ -10,10 +10,10 @@ function WelcomeScreen(props) {
         <View style={styles.logoContainer}>
         <Image
         style={styles.logo}
-        source={require("../assets/kisspng-dog-tag-cat-pet-pet-footprints-logo-5a8e35a8a6ea37.1082524815192692886837.png")}/>
-        <Text style={styles.tagline}>Place for all pet owners to connect!</Text>
-        <Text style={styles.tagline2}>Buy and sell pet products, chat, </Text>
-        <Text style={styles.tagline2}>find new friends and a lot more!</Text>
+        //source={require("../assets/kisspng-dog-tag-cat-pet-pet-footprints-logo-5a8e35a8a6ea37.1082524815192692886837.png")}
+        source={require("../assets/paw.png")}
+        />
+        <Text style={styles.tagline}>Place for all dog owners to connect!</Text>
         </View>
         <View style={styles.buttonsContainer}>
         <AppButton title="Login"/>
@@ -43,14 +43,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     tagline: {
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: "600",
-        paddingVertical: 10
-    },
-    tagline2: {
-        fontSize: 15,
-        fontWeight: "600",
-        paddingVertical: 5
+        paddingVertical: 50
     }
 })
 
