@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Modal, Button } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import defaultStyles from '../config/styles';
 import AppText from './AppText';
 import Screen from './Screen';
-import { FlatList } from 'react-native-gesture-handler';
 import PickerItem from './PickerItem';
 
 
