@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ViewComponent } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
-import React from 'react';
+import React, { useState } from 'react';
 
 import AppText from './app/components/AppText';
 import Card from './app/components/Card';
@@ -15,14 +15,12 @@ import AccountScreen from './app/screens/AccountScreen';
 import ListingScreen from './app/screens/ListingScreen';
 import AppPicker from './app/components/AppPicker';
 import AppTextInput from './app/components/AppTextInput';
+import LoginScreen from './app/screens/LoginScreen';
+import RegisterScreen from './app/screens/RegisterScreen';
 
 export default function App() {
-  return  (
-<Screen>
-  <AppPicker icon="apps" placeholder="Category"/>
-  <AppTextInput icon="email" placeholder="Email"/>
-</Screen>
-  );
+
+  return  <RegisterScreen/>
 }
 
 const styles = StyleSheet.create({
