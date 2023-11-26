@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-// import useLocation from "../hooks/useLocation";
 
 import {
   AppForm as Form,
@@ -26,8 +25,6 @@ const categories = [
 
 function ListingEditScreen() {
 
-// const location = useLocation();
-
   return (
 
     <Screen style={styles.container}>
@@ -38,7 +35,7 @@ function ListingEditScreen() {
           description: "",
           category: null,
         }}
-        onSubmit={(values) => console.log(location)}
+        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
         <FormField maxLength={255} name="title" placeholder="Title" />
