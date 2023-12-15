@@ -6,7 +6,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function ListItem({title, subTitle, image, IconComponent, onPress, renderRightActions}) {
+function ListItem({
+    title, 
+    subTitle, 
+    image, 
+    IconComponent, 
+    onPress, 
+    renderRightActions}) {
     return (
         <GestureHandlerRootView>
         <Swipeable renderRightActions={renderRightActions}>
@@ -21,7 +27,7 @@ function ListItem({title, subTitle, image, IconComponent, onPress, renderRightAc
         style={styles.image}/>}
         <View style={styles.detailsContainer}>
             <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
-        {subTitle && <AppText style={styles.subTitle} numberOfLines={2}>{subTitle}</AppText>}
+            {subTitle && <AppText style={styles.subTitle} numberOfLines={2}>{subTitle}</AppText>}
         </View>
         <MaterialCommunityIcons name="chevron-right"
         size={25}
@@ -40,6 +46,11 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: colors.white
     },
+    detailsContainer: {
+        flex: 1,
+        marginLeft: 10,
+        justifyContent: 'center'
+    },
     image: {
         width: 70,
         height: 70,
@@ -50,11 +61,6 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         color: colors.medium
-    },
-    detailsContainer: {
-        flex: 1,
-        marginLeft: 10,
-        justifyContent: 'center'
     }
 
 })

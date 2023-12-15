@@ -8,8 +8,17 @@ import Screen from './Screen';
 import PickerItem from './PickerItem';
 
 
-function AppPicker({icon, items, numberOfColumns = 1, onSelectItem, placeholder, selectedItem, width = "100%", PickerItemComponent = PickerItem}) {
-    const [modalVisible, setModalVisible] = useState(false)
+function AppPicker({
+  icon, 
+  items, 
+  numberOfColumns = 1, 
+  onSelectItem, 
+  placeholder, 
+  selectedItem, 
+  width = "100%", 
+  PickerItemComponent = PickerItem}) {
+
+  const [modalVisible, setModalVisible] = useState(false)
     
     return (
         <>
