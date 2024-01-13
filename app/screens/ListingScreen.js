@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList , StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, FlatList , StyleSheet, Text } from 'react-native';
 
 import Screen from '../components/Screen';
 import Card from '../components/Card';
@@ -34,26 +34,34 @@ const [error, setError] = useState(false)
 const [loaded, setLoaded] = useState(false)
 
 useEffect(()=>{
-      const q = query(collection(firestore, "ilmoitukset"))
-      const unsubscribe = onSnapshot(q,(querySnapshot)=>{
-          const data = []
-
-          querySnapshot.forEach((doc)=>{
-              data.push({
-                  id: doc.id,
-                  title: doc.data().title,
-                  price: doc.data().price,
-                  image: require('../assets/collar.webp')
-              })
-          })
-             setListings(data)
-             setLoaded(true)
-             console.log("LOADED ", data)
-          })
-          return () =>{
-              unsubscribe()
-          }
+loadListings()   
       }, [])
+
+      const loadListings = () => {
+        const q = query(collection(firestore, "ilmoitukset"))
+        const unsubscribe = onSnapshot(q,(querySnapshot)=>{
+            const data = []
+  
+            querySnapshot.forEach((doc)=>{
+                data.push({
+                    id: doc.id,
+                    title: doc.data().title,
+                    price: doc.data().price,
+                    image: require('../assets/collar.webp')
+                })
+            })
+               setListings(data)
+               setLoaded(true)
+               console.log("LOADED ", data)
+            },
+            (error) => {
+              console.error("Error fetching data from Firestore:", error);
+              setError(true);
+                      })
+            return () =>{
+                unsubscribe()
+            }
+      }
 
 /* const loadListings = async () => {
   const response = await listingsApi.getListings()
@@ -62,14 +70,11 @@ useEffect(()=>{
   setListings(response.data)
 } */
 
-   if(!loaded) return <Screen><Text>Loading..</Text></Screen>
+   if (error) return <Screen><AppText>Error fetching data</AppText><AppButton title="Retry" onPress={loadListings}/></Screen>
+   if(!loaded) return <Screen><ActivityIndicator animating={true} size="large"/></Screen>
 
     return (
     <Screen style={styles.screen}>
-     {/*  {error && <>
-      <AppText>Couldn't retrieve the listings.</AppText>
-      <AppButton title="Retry" onPress={loadListings}/>
-      </>} */}
        <FlatList
        data={listings}
        keyExtractor={listing => listing.id.toString()}

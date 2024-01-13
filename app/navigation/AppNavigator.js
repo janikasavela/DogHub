@@ -20,10 +20,10 @@ const AppNavigator = () =>
             <MaterialCommunityIcons name="home" color={color} size={size}/>}}
             />
         <Tab.Screen 
-        name="ListingEdit" 
+        name="Add Listing" 
         component={ListingEditScreen}
         options={({ navigation }) => ({
-            tabBarButton: () => <NewListingButton onPress={() => navigation.navigate("ListingEdit")}/>,
+            tabBarButton: () => <NewListingButton onPress={() => navigation.navigate("Add Listing")}/>,
             tabBarIcon: ({ color, size}) => 
             <MaterialCommunityIcons name="plus-circle" color={color} size={size}/>})}
         />
