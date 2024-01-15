@@ -14,6 +14,7 @@ const listing = route.params
  <Image style={styles.image} source={listing.image}/>
  <View style={styles.detailsContainer}>
  <AppText style={styles.title}>{listing.title}</AppText>
+ <AppText style={styles.desc}>{listing.description}</AppText>
  <AppText style={styles.price}>{listing.price}$</AppText>
  <View style={styles.userContainer}>
  <ListItem 
@@ -47,6 +48,9 @@ const styles = StyleSheet.create({
     },
     userContainer: {
         marginVertical: 40
+    },
+    desc: {
+        marginTop: 5
     }
 })
 

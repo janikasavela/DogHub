@@ -5,27 +5,9 @@ import Screen from '../components/Screen';
 import Card from '../components/Card';
 import colors from '../config/colors';
 import routes from '../navigation/routes';
-import listingsApi from '../api/listings'
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import {firestore, collection, query, onSnapshot, doc, USERS, getDoc, getDocs, orderBy} from '../firebase/Config'
-import { QuerySnapshot } from 'firebase/firestore';
-
-
-const listings = [
-    {
-        id: 1,
-        title: 'Chicken Treats for sale',
-        price: 15,
-        image: require('../assets/food.webp')
-    },
-    {
-        id: 2,
-        title: 'Dog collar for sale',
-        price: 35,
-        image: require('../assets/collar.webp')
-    }
-]
 
 function ListingScreen({ navigation }) {
 
@@ -47,7 +29,8 @@ loadListings()
                     id: doc.id,
                     title: doc.data().title,
                     price: doc.data().price,
-                    image: require('../assets/collar.webp')
+                    image: require('../assets/collar.webp'),
+                    description: doc.data().description,
                 })
             })
                setListings(data)
@@ -71,13 +54,14 @@ loadListings()
 } */
 
    if (error) return <Screen><AppText>Error fetching data</AppText><AppButton title="Retry" onPress={loadListings}/></Screen>
-   if(!loaded) return <Screen><ActivityIndicator animating={true} size="large"/></Screen>
+   if(!loaded) return <Screen><ActivityIndicator animating={true} size="large" color={colors.primary}/></Screen>
 
     return (
     <Screen style={styles.screen}>
        <FlatList
        data={listings}
        keyExtractor={listing => listing.id.toString()}
+       showsVerticalScrollIndicator={false}
        renderItem={({item}) => 
     <Card
       title={item.title}

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, ActivityIndicator, Alert } from "react-native";
 import * as Yup from "yup";
 
 import {
@@ -12,6 +12,9 @@ import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+import { collection, firestore, query, addDoc, serverTimestamp, getDoc } from "../firebase/Config";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -81,6 +84,39 @@ const categories = [
 function ListingEditScreen() {
 
   const location = useLocation()
+  const [loading, setLoading] = useState(false)
+
+  const addReport = async (reportinfo, { resetForm }) => {
+    try {
+      setLoading(true); // Näytä latausindikaattori
+    
+        // Lisää dokumentti Firestoreen ja hae sen ID
+        const addedDocRef = await addDoc(collection(firestore, "ilmoitukset"), {
+          created: serverTimestamp(),
+          categoryId: reportinfo.category.value,
+          price: reportinfo.price,
+          title: reportinfo.title,
+          description: reportinfo.description,
+        });
+  
+        // Hae lisätyn dokumentin tiedot käyttämällä dokumentin ID:tä
+        const addedDocSnapshot = await getDoc(addedDocRef);
+  
+        // Tarkista, että dokumentti on lisätty onnistuneesti
+        if (addedDocSnapshot.exists()) {
+          Alert.alert('Sending was successful', 'Form sent successfully.');
+        } else {
+          Alert.alert('Error', 'Form submission failed, please try again.');
+        }
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error', 'An error occurred, please try again.');
+    } finally {
+      setLoading(false); // Piilota latausindikaattori
+      resetForm();
+    }
+    console.log("lomaketiedot", reportinfo);
+  };
 
   return (
     <Screen style={styles.container}>
@@ -92,7 +128,7 @@ function ListingEditScreen() {
           category: null,
           images: []
         }}
-        onSubmit={(values) => console.log(location)}
+        onSubmit={addReport}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images"/>
@@ -113,6 +149,7 @@ function ListingEditScreen() {
           placeholder="Description"
         />
         <SubmitButton title="Post" />
+        {loading && <ActivityIndicator size="large" animating={true} color={colors.primary}/>}
       </Form>
     </Screen>
   );
