@@ -5,6 +5,7 @@ import colors from '../config/colors';
 import AppText from './AppText';
 
 function Card({title, subTitle, image, onPress}) {
+
     return (
         <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.card}>

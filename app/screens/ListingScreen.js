@@ -30,12 +30,15 @@ loadListings()
                     title: doc.data().title,
                     price: doc.data().price,
                     image: require('../assets/collar.webp'),
+                    images: doc.data().images,
                     description: doc.data().description,
                 })
             })
                setListings(data)
                setLoaded(true)
                console.log("LOADED ", data)
+               console.log("IMAGES", data[1].images[0])
+
             },
             (error) => {
               console.error("Error fetching data from Firestore:", error);
