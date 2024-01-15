@@ -70,6 +70,8 @@ loadListings()
       title={item.title}
       subTitle={"$" + item.price}
       image={item.image} 
+      images={item.images}
+      id={item.id}
       onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}/>
     }
        />
