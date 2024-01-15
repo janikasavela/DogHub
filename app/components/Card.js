@@ -10,7 +10,7 @@ function Card({title, subTitle, image, onPress, images, id}) {
     const [imageUrl, setImageUrl] = useState()
     const listing = {title: title, subTitle: subTitle, images:images, id: id}
     const storage = getStorage()
-    const ilmRef = ref(storage, "ilmoitukset")
+    const ilmRef = ref(storage, "ilmoitukset/"+listing.id)
     const filename = listing.images[0] ? ref(ilmRef, listing.images[0]) : null;
     const filePath = filename ? filename.fullPath : null;
 
