@@ -3,6 +3,8 @@ Oma mobiilikehitys projektini, jota olen työstänyt aina kun ylimääräistä a
 
 Ideana on siis luoda puhelinsovellus koiran omistajille, jossa voi verkostoitua muiden koiran omistajien kanssa. Aloittaa keskusteluja, myydä/ostaa tavaroita, etsiä harrastuskavereita ja sovelluksessa olisi myös kartta, johon voisi merkkailla koiraystävällisiä paikkoja, ja niistä omia kokemuksia. Tarkoituksena kehitellä tätä eteenpäin, kun ylimääräistä aikaa on, on vielä kesken. Tällä hetkellä esim tietokanta yhteys jo hyvin toimii, ja kuvien tallennus ja näkyminen sovelluksessa.  
 
+Lyhyttä projektin demoa: https://www.youtube.com/shorts/NSaOPIxY_lQ
+
 ![Alt text](image-1.png)
 ![Alt text](image-2.png)
 ![Alt text](image-3.png)
